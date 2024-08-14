@@ -101,8 +101,8 @@ namespace LeetCode_Problems
         // 58
         public static int LengthOfLastWord(string s)
         {
-            var w = s.Trim().Split(" ");
-            return w[w.Length - 1].Length;
+            var word = s.Trim().Split(" ");
+            return word[word.Length - 1].Length;
         }
         public static int StrStr(string haystack, string needle)
         {
@@ -663,7 +663,7 @@ namespace LeetCode_Problems
             if (root == null) return false;
             if (root.left == null && root.right == null) return root.val == targetSum;
             int sum = targetSum - root.val;
-            return HasPathSum(root.left, sum) || HasPathSum(root.right, sum);
+            return HasPathSum(root.left!, sum) || HasPathSum(root.right, sum);
         }
         public static int[] PlusOne(int[] digits)
         {
