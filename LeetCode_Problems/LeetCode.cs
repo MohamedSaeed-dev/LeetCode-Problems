@@ -5,6 +5,47 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static bool LemonadeChange(int[] bills)
+        {
+            // [5, 5, 10, 10, 20]
+            var list = new Dictionary<int, int>() { { 5, 0 }, { 10, 0 }};
+            for (int i = 0; i < bills.Length; i++)
+            {
+                if (bills[i] == 5)
+                {
+                    list[5] += 1;
+                }
+                else if (bills[i] == 10)
+                {
+                    if (list[5] > 0)
+                    {
+                        list[5] -= 1;
+                        list[10] += 1;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else if (bills[i] == 20)
+                {
+                    if (list[10] > 0 && list[5] > 0)
+                    {
+                        list[10] -= 1;
+                        list[5] -= 1;
+                    }
+                    else if (list[5] > 2)
+                    {
+                        list[5] -= 3;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         public static bool isSubsequence(string s, string t)
         {
             int j = 0;
