@@ -5,6 +5,20 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static bool isSubsequence(string s, string t)
+        {
+            int j = 0;
+            for (int i = 0; i < t.Length; i++)
+            {
+                if (j == s.Length) break;
+                if(s[j] == t[i])
+                {
+                    j++;
+                }
+            }
+            if (j == s.Length) return true;
+            return false;
+        }
         public static void hexToStr()
         {
             string hex = "8E2";
