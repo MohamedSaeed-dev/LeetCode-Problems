@@ -5,6 +5,33 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static int LongestOnes(int[] nums, int k)
+        {
+            int maxx = 0;
+            int left = 0;
+            int num_zeros = 0;
+            for (int right = 0;  right < nums.Length; right++)
+            {
+                if(nums[right] == 0)
+                {
+                    num_zeros++;
+                }
+                while(num_zeros > k)
+                {
+                    if(nums[left] == 0)
+                    {
+                        num_zeros--;
+                    }
+                    left++;
+                }
+                maxx = Math.Max(maxx, right-left+1);
+            }
+            return maxx;
+        }
+        public static int TheMaximumAchievableX(int num, int t)
+        {
+            return num + 2 * t;
+        }
         public static bool LemonadeChange(int[] bills)
         {
             // [5, 5, 10, 10, 20]
