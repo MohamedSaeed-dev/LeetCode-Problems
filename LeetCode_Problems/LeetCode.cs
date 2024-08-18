@@ -5,8 +5,49 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static string LargestNumber(int[] nums)
+        {
+            var list = Array.ConvertAll(nums, x => x.ToString()).ToList();
+            list.Sort((x, y) =>
+            {
+                var o1 = x + y;
+                var o2 = y + x;
+                return o2.CompareTo(o1);
+            });
+            var list2 = string.Join("", list);
+            return list2.All(x => x == '0') ? "0" : list2;
+        }
+        public static bool BackspaceCompare(string s, string t)
+        {
+            string s1 = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '#')
+                {
+                    s1 = s1.Length > 0 ? s1.Substring(0, s1.Length-1) : s1;
+                }
+                else
+                {
+                    s1 += s[i];
+                }
+            }
+            string t1 = "";
+            for (int i = 0; i < t.Length; i++)
+            {
+                if (t[i] == '#')
+                {
+                    t1 = t1.Length > 0 ? t1.Substring(0, t1.Length - 1): t1;
+                }
+                else
+                {
+                    t1 += t[i];
+                }
+            }
+            return s1 == t1;
+        }
         public static int LongestOnes(int[] nums, int k)
         {
+            //1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0
             int maxx = 0;
             int left = 0;
             int num_zeros = 0;
