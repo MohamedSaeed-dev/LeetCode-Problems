@@ -5,6 +5,30 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static int[] Shuffle(int[] nums, int n)
+        {
+            // 2,5,1,3,4,7
+            int a = 0;
+            int b = n;
+            var arr = new int[nums.Length];
+            for (var i = 0; i < nums.Length; i+=2)
+            {
+                arr[i] = nums[a];
+                arr[i+1] = nums[b];
+                a += 1;
+                b += 1;
+            }
+            return arr;
+        }
+        public static int[] BuildArray(int[] nums)
+        {
+            var arr = new int[nums.Length];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                arr[i] = nums[nums[i]];
+            }
+            return arr;
+        }
         public static string LargestNumber(int[] nums)
         {
             var list = Array.ConvertAll(nums, x => x.ToString()).ToList();
