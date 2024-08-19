@@ -1,13 +1,67 @@
-﻿using System.Numerics;
+﻿using System.Linq;
+using System.Numerics;
 using System.Text;
 
 namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static int NumJewelsInStones(string jewels, string stones)
+        {
+            /*int count = 0;
+            for (int i = 0; i < stones.Length; i++)
+            {
+                if (jewels.Contains(stones[i])) count++;
+            }
+            return count;*/
+            int count = 0;
+            for (int i = 0; i < jewels.Length; i++)
+            {
+                count += stones.Count(x => x == jewels[i]);
+            }
+            return count;
+        }
+        public static string DefangIPaddr(string address)
+        {
+            var defangedIP = new StringBuilder();
+            for (int i = 0; i < address.Length; i++)
+            {
+                if (address[i] == '.') defangedIP.Append("[.]");
+                else defangedIP.Append(address[i]);
+            }
+            return defangedIP.ToString();
+        }
+        public static int FinalValueAfterOperations(string[] operations)
+        {
+            var operationsDict = new Dictionary<string, int>() { { "X++", 1 }, { "++X", 1 }, { "X--", -1 }, { "--X", -1 } };
+            int X = 0;
+            for (int i = 0; i < operations.Length; i++)
+            {
+                var operation = operationsDict[operations[i]];
+                X = X + operation;
+            }
+            return X;
+        }
+        public static int MinimumOperations(int[] nums)
+        {
+            int numOps = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if(nums[i] % 3 > 0)
+                {
+                    numOps++;
+                }
+            }
+            return numOps;
+        }
+        public static double[] ConvertTemperature(double celsius)
+        {
+            double feh = celsius * 1.80 + 32.00;
+            double kelv = celsius + 273.15;
+            return new double[] { kelv, feh };
+        }
         public static int[] Shuffle(int[] nums, int n)
         {
-            // 2,5,1,3,4,7
             int a = 0;
             int b = n;
             var arr = new int[nums.Length];
