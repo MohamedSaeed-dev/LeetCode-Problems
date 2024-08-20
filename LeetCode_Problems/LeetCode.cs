@@ -1,19 +1,25 @@
-﻿using System.Linq;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Text;
 
 namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static int[] MoveZeros(int[] nums)
+        {
+            var list = nums.ToList();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if(nums[i] == 0)
+                {
+                    list.Remove(nums[i]);
+                    list.Add(nums[i]);
+                }
+            }
+            return list.ToArray();
+        }
         public static int NumJewelsInStones(string jewels, string stones)
         {
-            /*int count = 0;
-            for (int i = 0; i < stones.Length; i++)
-            {
-                if (jewels.Contains(stones[i])) count++;
-            }
-            return count;*/
             int count = 0;
             for (int i = 0; i < jewels.Length; i++)
             {
@@ -264,23 +270,36 @@ namespace LeetCode_Problems
             return max_len;
         }
         // 13
-        public static void RomanToInt()
+        public static string IntToRoman(int num)
         {
-            var dic = new Dictionary<char, int> { { 'M', 1000 }, { 'D', 500 }, { 'C', 100 }, { 'L', 50 }, { 'X', 10 }, { 'V', 5 }, { 'I', 1 } };
-            var newNum = 0;
-            var w = "I";
-            for (int i = 0; i < w.Length; i++)
+            var map = new Dictionary<int, string> { {1, "I" }, {4, "IV"}, {5, "V"}, {9, "IX"}, {10, "X"}, {40, "XL"}, {50, "L"}, {80, "LXXX"}, { 90, "XC" }, { 100, "C"}, {400, "CD"}, {500, "D"}, {900, "CM"}, {1000, "M"} };
+            var newRoman = "";
+            foreach(var i in map.Reverse())
             {
-                if (i + 1 < w.Length && dic[w[i]] < dic[w[i + 1]])
+                while(num >= i.Key)
                 {
-                    newNum -= dic[w[i]];
+                    newRoman += i.Value.ToString();
+                    num -= i.Key;
+                }
+            }
+            return newRoman;
+        }
+        public static int RomanToInt(string roman)
+        {
+            var map = new Dictionary<char, int> { { 'M', 1000 }, { 'D', 500 }, { 'C', 100 }, { 'L', 50 }, { 'X', 10 }, { 'V', 5 }, { 'I', 1 } };
+            var newNum = 0;
+            for (int i = 0; i < roman.Length; i++)
+            {
+                if (i + 1 < roman.Length && map[roman[i]] < map[roman[i + 1]])
+                {
+                    newNum -= map[roman[i]];
                 }
                 else
                 {
-                    newNum += dic[w[i]];
+                    newNum += map[roman[i]];
                 }
             }
-            Console.WriteLine(newNum);
+            return newNum;
 
         }
         // 26
