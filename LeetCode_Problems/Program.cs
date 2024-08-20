@@ -2,5 +2,8 @@
 using LeetCode_Problems;
 
 
-var x = LeetCode.IntToRoman(1994);
-Console.WriteLine(x);
+var x = LeetCode.SummaryRanges(new int[] { -2147483648, -2147483647, 2147483647 });
+foreach (var i in x)
+{
+    Console.Write(i + " ");
+}

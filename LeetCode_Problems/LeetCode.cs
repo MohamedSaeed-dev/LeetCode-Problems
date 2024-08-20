@@ -5,6 +5,43 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static IList<string> SummaryRanges(int[] nums)
+        {
+            int start = nums[0];
+            int i = 0;
+            var list = new List<string>();
+            while(i < nums.Length)
+            {
+                start = nums[i];
+                while (i < nums.Length - 1 && nums[i + 1] == nums[i] + 1)
+                {
+                    i++;
+                }
+                if(start != nums[i])
+                {
+                    list.Add($"{start}->{nums[i]}");
+                }
+                else
+                {
+                    list.Add($"{nums[i]}");
+                }
+                i++;
+            }
+            return list;
+        }
+        public static int FindClosestNumber(int[] nums)
+        {
+            var hashSet = new HashSet<int>();
+            for(int i = 0; i < nums.Length; i++)
+            {
+                hashSet.Add(Math.Abs(nums[i]));
+            }
+            if (nums.Contains(hashSet.Min()))
+            {
+                return hashSet.Min();
+            }
+            return -hashSet.Min();
+        }
         public static int[] MoveZeros(int[] nums)
         {
             var list = nums.ToList();
