@@ -2,8 +2,12 @@
 using LeetCode_Problems;
 
 
-var x = LeetCode.SummaryRanges(new int[] { -2147483648, -2147483647, 2147483647 });
-foreach (var i in x)
+var x = LeetCode.Merge(new int[][] { [1, 3], [2, 6], [8, 10], [15, 18] });
+for (int i = 0; i < x.GetUpperBound(0); i++)
 {
-    Console.Write(i + " ");
+    for (int j = 0; j < x.GetUpperBound(1); j++)
+    {
+        Console.Write(x[i][j]+",");
+    }
+    Console.WriteLine();
 }

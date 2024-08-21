@@ -5,14 +5,77 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static int[][] Merge(int[][] intervals)
+        {
+            // [[1, 3], [2, 6], [8, 10], [15, 18]]
+            var ans = new int[intervals.Length][];
+            for (int i = 0; i < intervals.Length-1; i++)
+            {
+                for(int j = i+1; j < intervals.Length; j++)
+                {
+                    if (intervals[i][1] < intervals[j][0])
+                    {
+                        ans.Append(intervals[j]);
+                    }
+                    else
+                    {
+                        var arr = new int[] { intervals[i][0], intervals[j][1] };
+                        ans.Append(arr);
+                    }
+                }
+            }
+            ans.ToList().Sort((a,b) =>
+            {
+                return a[0].CompareTo(b[0]);
+            });
+            return ans.ToArray();
+        }
+        public static int[] ProductExcept(int[] nums)
+        {
+            // 1,2,3,4
+            // 1, 1, 2, 6
+            var ans = new int[nums.Length];
+            var left = new int[nums.Length];
+            var right = new int[nums.Length];
+            left[0] = 1;
+            right[right.Length-1] = 1;
+            var prod_left = 1;
+            var prod_right = 1;
+            for (int i = 0; i < left.Length-1; i++)
+            {
+                prod_left *= nums[i];
+                left[i+1] = prod_left;
+            }
+            for (int i = right.Length-1 ;i > 0 ; i--)
+            {
+                prod_right *= nums[i];
+                right[i - 1] = prod_right;
+            }
+            for(int i = 0; i < nums.Length ; i++)
+            {
+                ans[i] = left[i]*right[i];
+            }
+            return ans;
+        }
+        public static int MaxProfit(int[] prices)
+        {
+            int max_profit = 0;
+            int min_price = int.MaxValue;
+
+            for(int i = 0; i < prices.Length; i++)
+            {
+                min_price = Math.Min(min_price, prices[i]);
+                max_profit = Math.Max(max_profit, prices[i]-min_price);
+            }
+            return max_profit;
+        }
         public static IList<string> SummaryRanges(int[] nums)
         {
-            int start = nums[0];
-            int i = 0;
             var list = new List<string>();
+            int i = 0;
             while(i < nums.Length)
             {
-                start = nums[i];
+                int start = nums[i];
                 while (i < nums.Length - 1 && nums[i + 1] == nums[i] + 1)
                 {
                     i++;
