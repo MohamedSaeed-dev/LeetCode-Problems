@@ -8,26 +8,23 @@ namespace LeetCode_Problems
         public static int[][] Merge(int[][] intervals)
         {
             // [[1, 3], [2, 6], [8, 10], [15, 18]]
-            var ans = new int[intervals.Length][];
-            for (int i = 0; i < intervals.Length-1; i++)
-            {
-                for(int j = i+1; j < intervals.Length; j++)
-                {
-                    if (intervals[i][1] < intervals[j][0])
-                    {
-                        ans.Append(intervals[j]);
-                    }
-                    else
-                    {
-                        var arr = new int[] { intervals[i][0], intervals[j][1] };
-                        ans.Append(arr);
-                    }
-                }
-            }
-            ans.ToList().Sort((a,b) =>
+            Array.Sort(intervals, (a, b) =>
             {
                 return a[0].CompareTo(b[0]);
             });
+            var ans = new List<int[]>() { intervals[0] };
+            
+            for (int i = 1; i < intervals.Length; i++)
+            {
+                if (intervals[i][0] <= ans[ans.Count - 1][1])
+                {
+                    ans[ans.Count - 1][1] = Math.Max(ans[ans.Count - 1][1], intervals[i][1]);
+                }
+                else
+                {
+                    ans.Add(intervals[i]);
+                }
+            }
             return ans.ToArray();
         }
         public static int[] ProductExcept(int[] nums)
