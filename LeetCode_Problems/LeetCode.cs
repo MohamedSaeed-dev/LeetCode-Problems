@@ -5,9 +5,30 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        public static int NumIdenticalPairs(int[] nums)
+        {
+            // 1,2,3,1,1,3
+            int left = 0;
+            int right = nums.Length - 1;
+            int count = 0;
+            while (left <= right)
+            {
+                if(left == right)
+                {
+                    left++;
+                    right = nums.Length - 1;
+                    continue;
+                }
+                if(nums[left] == nums[right])
+                {
+                    count++;
+                }
+                right--;
+            }
+            return count;
+        }
         public static int[][] Merge(int[][] intervals)
         {
-            // [[1, 3], [2, 6], [8, 10], [15, 18]]
             Array.Sort(intervals, (a, b) =>
             {
                 return a[0].CompareTo(b[0]);
