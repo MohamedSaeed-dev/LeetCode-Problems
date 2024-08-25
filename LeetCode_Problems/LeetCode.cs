@@ -5,6 +5,23 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
+        static List<int> ints = new List<int>();
+        public static IList<int> PostorderTraversal(TreeNode root)
+        {
+            var list = new List<int>();
+            var current = root;
+            while(current != null || list.Count > 0)
+            {
+                while(current != null)
+                {
+                    list.Add(current.val);
+                    current = current.left;
+                }
+                list.Add(current.val);
+                current = current.right;
+            }
+            return list;
+        }
         public static int NumIdenticalPairs(int[] nums)
         {
             // 1,2,3,1,1,3
