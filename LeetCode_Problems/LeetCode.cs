@@ -5,22 +5,36 @@ namespace LeetCode_Problems
 {
     public class LeetCode
     {
-        static List<int> ints = new List<int>();
-        public static IList<int> PostorderTraversal(TreeNode root)
+        public static IList<string> FizzBuzz(int n)
         {
-            var list = new List<int>();
-            var current = root;
-            while(current != null || list.Count > 0)
+            string[] answer = new string[n];
+            for (int i = 1; i <= n; i++)
             {
-                while(current != null)
-                {
-                    list.Add(current.val);
-                    current = current.left;
-                }
-                list.Add(current.val);
-                current = current.right;
+                if (i % 3 == 0 && i % 5 == 0) answer[i] = "FizzBuzz";
+                else if (i % 3 == 0) answer[i-1] = "Fizz";
+                else if (i % 5 == 0) answer[i-1] = "Buzz";
+                else answer[i-1] = i.ToString();
             }
-            return list;
+            return answer;
+        }
+        public static int[] RunningSum(int[] nums)
+        {
+            int sum = nums[0];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                sum += nums[i];
+                nums[i] = sum;
+            }
+            return nums;
+        }
+        public static int MaximumWealth(int[][] accounts)
+        {
+            int maxSum = 0; 
+            for (int i = 0; i < accounts.Length; i++)
+            {
+                maxSum = Math.Max(maxSum, accounts[i].Sum());
+            }
+            return maxSum;
         }
         public static int NumIdenticalPairs(int[] nums)
         {
