@@ -1,9 +1,7 @@
 ﻿
 using LeetCode_Problems;
+using static LeetCode_Problems.LeetCode;
 
 
-var x = LeetCode.FizzBuzz(3);
-foreach (var i in x)
-{
-    Console.WriteLine(i + " ");
-}
+var x = CanConstruct("aab", "baa");
+Console.WriteLine(x);

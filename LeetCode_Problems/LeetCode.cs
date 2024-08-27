@@ -3,14 +3,55 @@ using System.Text;
 
 namespace LeetCode_Problems
 {
-    public class LeetCode
+    public static class LeetCode
     {
+        public static bool CanConstruct(string ransomNote, string magazine)
+        {
+            for (int i = 0; i < ransomNote.Length; i++)
+            {
+                if (!magazine.Contains(ransomNote[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public static ListNode MiddleNode(ListNode head)
+        {
+            var curr = head;
+            int count = 0;
+            while (curr != null)
+            {
+                count++;
+                curr = curr.next;
+            }
+
+            double half = count / 2;
+            int n = (int)Math.Ceiling(half);
+            curr = head;
+            for (int i = 0; i < n; i++)
+            {
+                curr = curr.next;
+            }
+            return curr;
+        }
+        public static int NumberOfSteps(int num)
+        {
+            int numOfSteps = 0;
+            while (num != 0)
+            {
+                if (num % 2 == 0) num /= 2;
+                else num--;
+                numOfSteps++;
+            }
+            return numOfSteps;
+        }
         public static IList<string> FizzBuzz(int n)
         {
             string[] answer = new string[n];
             for (int i = 1; i <= n; i++)
             {
-                if (i % 3 == 0 && i % 5 == 0) answer[i] = "FizzBuzz";
+                if (i % 3 == 0 && i % 5 == 0) answer[i-1] = "FizzBuzz";
                 else if (i % 3 == 0) answer[i-1] = "Fizz";
                 else if (i % 5 == 0) answer[i-1] = "Buzz";
                 else answer[i-1] = i.ToString();
@@ -1027,7 +1068,7 @@ namespace LeetCode_Problems
             }
             return right;
         }
-        public bool HasPathSum(TreeNode root, int targetSum)
+        public static bool HasPathSum(TreeNode root, int targetSum)
         {
             if (root == null) return false;
             if (root.left == null && root.right == null) return root.val == targetSum;
