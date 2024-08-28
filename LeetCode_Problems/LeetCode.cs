@@ -5,8 +5,89 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int RemoveDuplicatesII(int[] nums)
+        {
+            int k = 0;
+            var map = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (map.ContainsKey(nums[i]))
+                {
+                    if (map[nums[i]] < 2)
+                    {
+                        map[nums[i]]++;
+                        nums[k] = nums[i];
+                        k++;
+                    }
+                    else
+                    {
+                        map[nums[i]]++;
+                    }
+                }
+                else
+                {
+                    map.Add(nums[i], 1);
+                    nums[k] = nums[i];
+                    k++;
+                }
+            }
+            foreach (var item in nums)
+            {
+                Console.Write(item+" ");
+            }
+            return k;
+        }
+        public static void Merge(int[] nums1, int m, int[] nums2, int n)
+        {
+            if(n > 0)
+            {
+                for (int i = nums1.Length - n; i < nums1.Length; i++)
+                {
+                    nums1[i] = nums2[i-m];
+                }
+            }
+            Array.Sort(nums1,(a, b) =>
+            {
+                return a.CompareTo(b);
+            });
+
+            foreach (int i in nums1)
+            {
+                Console.Write(i+" ");
+            }
+        }
+        public static int RemoveElementI(int[] nums, int val)
+        {
+            int k = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if(nums[i] != val)
+                {
+                    nums[k] = nums[i];
+                    k++;
+                }
+            }
+            return k;
+        }
+        public static int RemoveDuplicatesI(int[] nums)
+        {
+            var hash = new List<int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!hash.Contains(nums[i]))
+                {
+                    hash.Add(nums[i]);
+                }
+            }
+            for (int i = 0; i < hash.Count; i++)
+            {
+                nums[i] = hash[i];
+            }
+            return hash.Count;
+        }
         public static void Rotate(int[][] matrix)
         {
+            // Transpose A[i][j] = A[j][i]
             for (int i = 0; i < matrix.Length; i++)
             {
                 for(int j = i; j < matrix[i].Length; j++)
@@ -16,7 +97,7 @@ namespace LeetCode_Problems
                     matrix[j][i] = temp;
                 }
             }
-
+            // Reflection A[i][0] = A[i][length-1]
             for (int i = 0; i < matrix.Length; i++)
             {
                 int start = 0;

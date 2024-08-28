@@ -2,5 +2,6 @@
 using LeetCode_Problems;
 using static LeetCode_Problems.LeetCode;
 
-
-Rotate(new int[][] { [5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16] });
+var x = RemoveDuplicatesII(new int[] { 0, 0, 1, 1, 1, 1, 2, 3, 3 });
+Console.WriteLine();
+Console.WriteLine(x);
