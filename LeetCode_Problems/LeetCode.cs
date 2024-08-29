@@ -5,6 +5,86 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int MaxProfitI(int[] prices)
+        {
+            // 7,6,4,1,5,8,3,6,4
+            int i = 0;
+            int low = prices[0], 
+                high = prices[0], 
+                profit = 0;
+            while(i < prices.Length-1)
+            {
+                while(i < prices.Length-1 && prices[i] >= prices[i + 1])
+                {
+                    i++;
+                }
+                low = prices[i];
+                while (i < prices.Length - 1 && prices[i] <= prices[i + 1])
+                {
+                    i++;
+                }
+                high = prices[i];
+                profit += high - low;
+            }
+            return profit;
+        }
+        public static bool IsPalindromeI(string s)
+        {
+            string parsedS = string.Join("", s.Where(x => char.IsLetterOrDigit(x)).Select(x => char.ToLower(x)));
+            StringBuilder palindrome = new StringBuilder();
+            for (int i = parsedS.Length - 1; i >= 0; i--)
+            {
+                palindrome.Append(parsedS[i]);
+            }
+            return parsedS == palindrome.ToString();
+        }
+        public static int[] SortedSquares(int[] nums)
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                nums[i] = nums[i] * nums[i];    
+            }
+            Array.Sort(nums);
+            return nums;
+        }
+        public static void ReverseStringI(char[] s)
+        {
+            int left = 0, right = s.Length - 1;
+            while (left < right)
+            {
+                char temp = s[left];
+                s[left] = s[right];
+                s[right] = temp;
+
+                left++;
+                right--;
+            }
+            foreach (var i in s)
+            {
+                Console.Write(i + " ");
+            }
+        }
+        public static int[] TwoSum(int[] numbers, int target)
+        {
+            int left = 0, right = numbers.Length - 1;
+            while(left < right)
+            {
+                int sum = numbers[left] + numbers[right];
+                if(sum == target)
+                {
+                    return new int[] { left+1, right+1 };
+                }
+                else if(sum > target)
+                {
+                    right--;
+                }
+                else if(sum < target)
+                {
+                    left++;
+                }
+            }
+            return new int[] {};
+        }
         public static int RemoveDuplicatesII(int[] nums)
         {
             int k = 0;
@@ -18,10 +98,6 @@ namespace LeetCode_Problems
                         map[nums[i]]++;
                         nums[k] = nums[i];
                         k++;
-                    }
-                    else
-                    {
-                        map[nums[i]]++;
                     }
                 }
                 else
