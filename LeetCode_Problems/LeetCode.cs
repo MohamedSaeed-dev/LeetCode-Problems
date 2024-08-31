@@ -1,13 +1,29 @@
-﻿using System.Numerics;
+﻿using System.IO.MemoryMappedFiles;
+using System.Numerics;
 using System.Text;
 
 namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int MaxNumberOfBalloons(string text)
+        {
+            var map = new Dictionary<char, int>();
+            string ballon = "ballon";
+
+            foreach (var i in text)
+            {
+                if (map.ContainsKey(i) ) map[i]++;
+                else if(ballon.Contains(i)) map[i] = 1;
+            }
+
+            if (map.Any(x => !ballon.Contains(x.Key))) return 0;
+            int l = map['l'] / 2;
+            int o = map['o'] / 2;
+            return new int[] { map['b'], map['a'], l, o, map['n'] }.Min();
+        }
         public static void SortColors(int[] nums)
         {
-            // 2, 0, 2, 1, 1, 0
             for (int i = 0; i < nums.Length; i++)
             {
                 var min = i;
