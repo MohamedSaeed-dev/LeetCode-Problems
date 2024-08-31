@@ -5,13 +5,47 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
-        public IList<IList<string>> GroupAnagrams(string[] strs)
+        public static void SortColors(int[] nums)
         {
-            var list = new List<IList<string>>();
-            for (int i = 0; i < strs.Length; i++)
+            // 2, 0, 2, 1, 1, 0
+            for (int i = 0; i < nums.Length; i++)
             {
-
+                var min = i;
+                for (int j = 0; j < nums.Length; j++)
+                {
+                    if (nums[j] < nums[min])
+                    {
+                        min = j;
+                    }
+                }
+                var temp = nums[i];
+                nums[i] = nums[min];
+                nums[min] = temp;
             }
+            foreach(var i in nums)
+            {
+                Console.Write(i + " ");
+            }
+        }
+        public static bool CanConstruct(string ransomNote, string magazine)
+        {
+            var mapNote = new Dictionary<char, int>();
+            var mapMag = new Dictionary<char, int>();
+            foreach(var i in ransomNote)
+            {
+                if (mapNote.ContainsKey(i)) mapNote[i]++;
+                else mapNote[i] = 1;
+            }
+            foreach (var i in magazine)
+            {
+                if (mapMag.ContainsKey(i)) mapMag[i]++;
+                else mapMag[i] = 1;
+            }
+            foreach (var pair in mapNote)
+            {
+                if (!mapMag.ContainsKey(pair.Key) || (pair.Value > mapMag[pair.Key])) return false;
+            }
+            return true;
         }
         public static int MajorityElement(int[] nums)
         {
@@ -272,17 +306,6 @@ namespace LeetCode_Problems
                 }
             }
 
-        }
-        public static bool CanConstruct(string ransomNote, string magazine)
-        {
-            for (int i = 0; i < ransomNote.Length; i++)
-            {
-                if (!magazine.Contains(ransomNote[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
         public static ListNode MiddleNode(ListNode head)
         {
