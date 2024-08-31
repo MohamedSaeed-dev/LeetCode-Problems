@@ -5,28 +5,6 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
-        public static IList<IList<string>> GroupAnagrams(string[] strs)
-        {
-            var list = new List<IList<string>>();
-            for (int i = 0; i < strs.Length; i++)
-            {
-                var box = new List<string>() { strs[i] };
-                for (int j = i + 1; j < strs.Length; j++)
-                {
-                    if (IsAnagram(strs[i], strs[j]))
-                    {
-                        bool notContains = false;
-                        list.ForEach(x =>
-                        {
-                            if (x.Contains(strs[j])) notContains = true;
-                        });
-                        if (!notContains) box.Add(strs[j]);
-                    }
-                }
-                list.Add(box);
-            }
-            return list;
-        }
         public static int MinOperations(string[] logs)
         {
             var ops = new Stack<string>();
