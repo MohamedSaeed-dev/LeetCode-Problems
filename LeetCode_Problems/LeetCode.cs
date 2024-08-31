@@ -5,9 +5,72 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static bool IsAnagram(string s, string t)
+        {
+            if(s.Length !=  t.Length) return false;
+            var mapS = new Dictionary<char, int>();
+            var mapT = new Dictionary<char, int>();
+            foreach(char c in s)
+            {
+                if (mapS.ContainsKey(c))
+                {
+                    mapS[c]++;
+                }
+                else
+                {
+                    mapS[c] = 1;
+                }
+            }
+            foreach (char c in t)
+            {
+                if (mapT.ContainsKey(c))
+                {
+                    mapT[c]++;
+                }
+                else
+                {
+                    mapT[c] = 1;
+                }
+            }
+
+            foreach(var pair in mapS)
+            {
+                if (!mapT.ContainsKey(pair.Key) || (pair.Value != mapT[pair.Key])) return false;
+            }
+            return true;
+        }
+        public static int FindSmallestInt(int[] args)
+        {
+            return args.Min();
+        }
+        public static long[] Digitize(long n)
+        {
+            var stringify = n.ToString();
+            var reversedArray = new long[stringify.Length];
+            for (int i = stringify.Length-1; i >=0; i--)
+            {
+                reversedArray[stringify.Length-1 - i] = long.Parse(stringify[i].ToString());
+            }
+            return reversedArray;
+        }
+        public static bool ContainsDuplicate(int[] nums)
+        {
+            var map = new HashSet<int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!map.Contains(nums[i]))
+                {
+                    map.Add(nums[i]);
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static int MaxProfitI(int[] prices)
         {
-            // 7,6,4,1,5,8,3,6,4
             int i = 0;
             int low = prices[0], 
                 high = prices[0], 
@@ -612,11 +675,8 @@ namespace LeetCode_Problems
             }
         }
         // 1
-        public static int[] TwoSums()
+        public static int[] TwoSums(int[] nums, int target)
         {
-            var nums = new int[] { 3, 2, 4 };
-            var target = 6;
-
             var dic = new Dictionary<int, int>();
 
             for (int i = 0; i < nums.Length; i++)
