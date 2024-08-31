@@ -2,5 +2,5 @@
 using LeetCode_Problems;
 using static LeetCode_Problems.LeetCode;
 
-var x = MaxProfitI(new int[] { 7,6,4,1,5,8,3,6,4 });
+var x = IsAnagram("rat", "cat");
 Console.WriteLine(x);
