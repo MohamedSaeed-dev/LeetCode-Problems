@@ -11,7 +11,7 @@ namespace LeetCode_Problems
             for (int i = 0; i < nums.Length; i++)
             {
                 var min = i;
-                for (int j = 0; j < nums.Length; j++)
+                for (int j = i; j < nums.Length; j++)
                 {
                     if (nums[j] < nums[min])
                     {
@@ -22,7 +22,7 @@ namespace LeetCode_Problems
                 nums[i] = nums[min];
                 nums[min] = temp;
             }
-            foreach(var i in nums)
+            foreach (var i in nums)
             {
                 Console.Write(i + " ");
             }
