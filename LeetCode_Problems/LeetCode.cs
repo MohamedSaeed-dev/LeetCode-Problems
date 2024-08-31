@@ -1,11 +1,43 @@
-﻿using System.IO.MemoryMappedFiles;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Text;
 
 namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int CalPoints(string[] operations)
+        {
+            // "5","-2","4","C","D","9","+","+"
+            var record = new Stack<int>();
+            for (int i = 0; i < operations.Length; i++)
+            {
+                if (int.TryParse(operations[i], out int num)) record.Push(num);
+                else
+                {
+                    switch (operations[i])
+                    {
+                        case "+":
+                            var num1 = record.Pop();
+                            var num2 = record.Pop();
+                            var sum = num1 + num2;
+                            record.Push(num2);
+                            record.Push(num1);
+                            record.Push(sum);
+                            break;
+                        case "D":
+                            var top = record.Peek();
+                            var doubled = top * 2;
+                            record.Push(doubled);
+                            break;
+                        case "C":
+                            record.Pop();
+                            break;
+                        default: break;
+                    }
+                }
+            }
+            return record.Sum();
+        }
         public static int MaxNumberOfBalloons(string text)
         {
             var map = new Dictionary<char, int>();
