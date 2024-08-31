@@ -5,6 +5,26 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public IList<IList<string>> GroupAnagrams(string[] strs)
+        {
+            var list = new List<IList<string>>();
+            for (int i = 0; i < strs.Length; i++)
+            {
+
+            }
+        }
+        public static int MajorityElement(int[] nums)
+        {
+            int times = nums.Length / 2;
+            var map = new Dictionary<int, int>();
+            for(int i = 0; i < nums.Length; i++)
+            {
+                if (map.ContainsKey(nums[i])) map[nums[i]]++;
+                else map[nums[i]] = 1;
+            }
+            var num = map.FirstOrDefault(x => x.Value > times);
+            return num.Key;
+        }
         public static bool IsAnagram(string s, string t)
         {
             if(s.Length !=  t.Length) return false;
@@ -12,27 +32,14 @@ namespace LeetCode_Problems
             var mapT = new Dictionary<char, int>();
             foreach(char c in s)
             {
-                if (mapS.ContainsKey(c))
-                {
-                    mapS[c]++;
-                }
-                else
-                {
-                    mapS[c] = 1;
-                }
+                if (mapS.ContainsKey(c)) mapS[c]++;
+                else mapS[c] = 1;
             }
             foreach (char c in t)
             {
-                if (mapT.ContainsKey(c))
-                {
-                    mapT[c]++;
-                }
-                else
-                {
-                    mapT[c] = 1;
-                }
+                if (mapT.ContainsKey(c)) mapT[c]++;
+                else mapT[c] = 1;
             }
-
             foreach(var pair in mapS)
             {
                 if (!mapT.ContainsKey(pair.Key) || (pair.Value != mapT[pair.Key])) return false;
