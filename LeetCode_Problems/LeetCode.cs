@@ -5,9 +5,28 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int MinOperations(string[] logs)
+        {
+            var ops = new Stack<string>();
+            for (int i = 0; i < logs.Length; i++)
+            {
+                switch(logs[i])
+                {
+                    case "../":
+                        if(ops.Count > 0) ops.Pop();
+                        break;
+                    case "./":
+                        break;
+                    default:
+                        ops.Push(logs[i]);
+                        Console.WriteLine(ops.Peek());
+                        break;
+                }
+            }
+            return ops.Count;
+        }
         public static int CalPoints(string[] operations)
         {
-            // "5","-2","4","C","D","9","+","+"
             var record = new Stack<int>();
             for (int i = 0; i < operations.Length; i++)
             {
