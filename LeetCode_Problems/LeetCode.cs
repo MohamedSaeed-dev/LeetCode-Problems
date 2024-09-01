@@ -8,7 +8,6 @@ namespace LeetCode_Problems
     {
         public static void Rotate(int[] nums, int k)
         {
-            // -1,-100,3,99
             k = k % nums.Length;
             Array.Reverse(nums);
             int start = 0;
