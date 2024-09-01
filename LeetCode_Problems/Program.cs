@@ -6,5 +6,5 @@ using static LeetCode_Problems.LeetCode;
 //{
 //    Console.Write(i + " ");
 //}
-var x = FindMedianSortedArrays(new int[] { 1, 2 }, new int[] { 3,4 });
+var x = Reverse(-123);
 Console.WriteLine(x);
