@@ -7,6 +7,19 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int Reverse(int x)
+        {
+            string num = x.ToString();
+            bool hasDash = num.Any(x => x ==  '-');
+            num = string.Join("",num.Where(char.IsDigit));
+            string reversed = string.Join("", num.Reverse().ToArray());
+            string withDash = hasDash ? $"-{reversed}" : reversed;
+            if(int.TryParse(withDash, out int res))
+            {
+                return res;
+            }
+            return 0;
+        }
         public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
         {
             var list = new List<int>();
