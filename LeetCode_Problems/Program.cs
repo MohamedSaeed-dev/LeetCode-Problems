@@ -6,4 +6,5 @@ using static LeetCode_Problems.LeetCode;
 //{
 //    Console.Write(i + " ");
 //}
-Rotate(new int[] { -1 }, 2);
+var x = FindMedianSortedArrays(new int[] { 1, 2 }, new int[] { 3,4 });
+Console.WriteLine(x);
