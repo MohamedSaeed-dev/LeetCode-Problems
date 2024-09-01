@@ -5,6 +5,23 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int[][] Construct2DArray(int[] original, int m, int n)
+        {
+            if(m*n != original.Length) return Array.Empty<int[]>();
+            var current = 0;
+            var arr = new int[m][];
+            for (int i = 0; i < m; i++)
+            {
+                var row = new int[n];
+                for (int j = 0; j < n; j++)
+                {
+                    row[j] = original[current];
+                    current++;
+                }
+                arr[i] = row;
+            }
+            return arr;
+        }
         public static int MinOperations(string[] logs)
         {
             var ops = new Stack<string>();
