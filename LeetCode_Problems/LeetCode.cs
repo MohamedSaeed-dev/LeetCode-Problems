@@ -1,11 +1,29 @@
 ﻿using System;
 using System.Numerics;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
+        {
+            var list = new List<int>();
+            list.AddRange(nums1);
+            list.AddRange(nums2);
+            list.Sort();
+            int length = list.Count;
+            if (length % 2 != 0)
+            {
+                int mid = length / 2;
+                return list[mid];
+            }
+            int med = length / 2;
+            double sum = (list[med]+list[med-1]);
+            double half = sum / 2;
+            return half;
+        }
         public static void Rotate(int[] nums, int k)
         {
             k = k % nums.Length;
