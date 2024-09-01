@@ -1,10 +1,59 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using System.Text;
 
 namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static void Rotate(int[] nums, int k)
+        {
+            // -1,-100,3,99
+            k = k % nums.Length;
+            Array.Reverse(nums);
+            int start = 0;
+            int end = k-1;
+            while(start < end)
+            {
+                var temp = nums[start]; 
+                nums[start] = nums[end];
+                nums[end] = temp;
+                start++;
+                end--;
+            }
+            start = k;
+            end = nums.Length-1;
+            while (start < end)
+            {
+                var temp = nums[start];
+                nums[start] = nums[end];
+                nums[end] = temp;
+                start++;
+                end--;
+            }
+            foreach (var i in nums)
+            {
+                Console.Write(i + " ");
+            }
+        }
+        private static int[] Insert(ref int[] array, int index, int value)
+        {
+            for (int i = array.Length - 1; i > index; i--)
+            {
+                array[i] = array[i - 1];
+            }
+            array[index] = value;
+            return array;
+        }
+        private static int[] Remove(ref int[] array, int index)
+        {
+            for (int i = index; i < array.Length - 1; i++)
+            {
+                array[i] = array[i + 1];
+            }
+            array[array.Length - 1] = default;
+            return array;
+        }
         public static int[][] Construct2DArray(int[] original, int m, int n)
         {
             if(m*n != original.Length) return Array.Empty<int[]>();
