@@ -7,6 +7,18 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int DaysBetweenDates(string date1, string date2)
+        {
+            var date_1 = DateTime.Parse(date1);
+            var date_2 = DateTime.Parse(date2);
+            return Math.Abs((date_2 - date_1).Days);
+        }
+        public static bool ArrayStringsAreEqual(string[] word1, string[] word2)
+        {
+            string word1_string = string.Join("", word1);
+            string word2_string = string.Join("", word2);
+            return word1_string.Equals(word2_string);
+        }
         public static int ChalkReplacer(int[] chalk, int k)
         {
             int i = 0;
