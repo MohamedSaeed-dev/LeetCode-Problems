@@ -6,5 +6,5 @@ using static LeetCode_Problems.LeetCode;
 //{
 //    Console.Write(i + " ");
 //}
-var x = ChalkReplacer(new int[] { 5, 1, 5 }, 22);
+var x = DaysBetweenDates("2020-01-15", "2019-12-31");
 Console.WriteLine(x);
