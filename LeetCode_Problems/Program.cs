@@ -6,5 +6,5 @@ using static LeetCode_Problems.LeetCode;
 //{
 //    Console.Write(i + " ");
 //}
-var x = Reverse(-123);
+var x = ChalkReplacer(new int[] { 5, 1, 5 }, 22);
 Console.WriteLine(x);
