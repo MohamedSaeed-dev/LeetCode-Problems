@@ -7,6 +7,20 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int ChalkReplacer(int[] chalk, int k)
+        {
+            int i = 0;
+            while(k >= chalk[i])
+            {
+                k -= chalk[i];
+                if (i == chalk.Length - 1)
+                {
+                    i = 0; continue;
+                }
+                i++;
+            }
+            return i;
+        }
         public static int Reverse(int x)
         {
             string num = x.ToString();
