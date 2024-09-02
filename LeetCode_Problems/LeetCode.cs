@@ -7,6 +7,18 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static bool IsPowerOfTwo(int n)
+        {
+            double result = 0;
+            int i = 0;
+            while (result <= n)
+            {
+                result = Math.Pow(2, i);
+                if (result.Equals(n)) return true;
+                i++;
+            }
+            return false;
+        }
         public static int DaysBetweenDates(string date1, string date2)
         {
             var date_1 = DateTime.Parse(date1);
