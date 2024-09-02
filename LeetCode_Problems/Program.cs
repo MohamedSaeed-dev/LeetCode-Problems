@@ -6,5 +6,5 @@ using static LeetCode_Problems.LeetCode;
 //{
 //    Console.Write(i + " ");
 //}
-var x = DaysBetweenDates("2020-01-15", "2019-12-31");
+var x = IsPowerOfTwo(16);
 Console.WriteLine(x);
