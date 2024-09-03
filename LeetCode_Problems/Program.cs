@@ -6,5 +6,5 @@ using static LeetCode_Problems.LeetCode;
 //{
 //    Console.Write(i + " ");
 //}
-var x = IsPowerOfTwo(16);
+var x = GetLucky("iiii",1);
 Console.WriteLine(x);
