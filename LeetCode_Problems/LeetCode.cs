@@ -7,6 +7,30 @@ namespace LeetCode_Problems
 {
     public static class LeetCode
     {
+        public static int GetLucky(string s, int k)
+        {
+            StringBuilder convert = new();
+            int aIndex = 'a';
+            for (int i = 0; i < s.Length; i++)
+            {
+                convert.Append((int)s[i] - aIndex + 1);
+            }
+            int sum = 0;
+            while(k >= 1)
+            {
+                for (int i = 0; i < convert.Length; i++)
+                {
+                    sum += int.Parse(convert[i].ToString());
+                }
+                if(k == 1) break;
+                convert.Clear();
+                convert.Append(sum);
+                sum = 0;
+                k--;
+            }
+
+            return sum;
+        }
         public static bool IsPowerOfTwo(int n)
         {
             double result = 0;
