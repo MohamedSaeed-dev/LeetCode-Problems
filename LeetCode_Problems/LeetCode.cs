@@ -28,7 +28,6 @@ namespace LeetCode_Problems
                 sum = 0;
                 k--;
             }
-
             return sum;
         }
         public static bool IsPowerOfTwo(int n)
